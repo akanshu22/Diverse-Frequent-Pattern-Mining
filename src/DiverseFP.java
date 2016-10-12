@@ -26,7 +26,7 @@ public class DiverseFP {
 		DiverseFP ob = new DiverseFP();
 	    
 		ob.min_support = 0.5; 											//Relative Support
-		ob.min_diversity_threshold = 0.4;								//User-specified minimum diversity threshold
+		ob.min_diversity_threshold = 0.5;								//User-specified minimum diversity threshold
 		//ob.height_of_concept_hierarchy = 3;							//Height of the concept hierarchy
 		ob.input_filename = ".//mushroom.dat";							//Dataset file name for Frequent Item Set Mining
 		ob.output_filename = ".//frequent_item_set_output.txt";			//Output file name for Frequent Item Set
@@ -44,7 +44,7 @@ public class DiverseFP {
 	private void diverseFP(ArrayList<ArrayList<Integer>> itemset, int h, double min_div, String filename) throws IOException{
 		double plf[] = new double[h];
 		for(int l=h-1;l>=1;l--)
-			plf[l]=2*(h-l)/((float)(h-1)*h);
+			plf[l]=2*(h-l)/((double)(h-1)*h);
 		int count=0;
 		System.out.println("\n\n");
 		
@@ -63,7 +63,7 @@ public class DiverseFP {
 				gfp[l]=gfp_list.size();
 				if(gfp_list.size()==1)
 					break;
-				int mf = (gfp[l]-1)/(gfp[l+1]-1);
+				double mf = (gfp[l]-1)/(double)(gfp[l+1]-1);
 				dr+=plf[l]*mf;
 				list=gfp_list;
 				l--;
